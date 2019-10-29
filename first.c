@@ -61,7 +61,9 @@ int i = 0, j = 0, k = 0;
 type1 types[] = {
 {'c', print_c},
 {'s', print_s},
-{'%', print_per}
+{'%', print_per},
+{'d', print_d},
+{'i', print_i}
 };
 int (*p)(va_list);
 va_start(ap, format);
