@@ -18,7 +18,7 @@ return (1);
  *@ap: int
  *Return: int
  */
-int pint_s(va_list ap)
+int print_s(va_list ap)
 {
 int i = 0;
 char *c, *nothing = "(null)";
