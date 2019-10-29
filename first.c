@@ -21,12 +21,20 @@ return (1);
 int print_s(va_list ap)
 {
 int i = 0;
-char *c;
+char *c, *nothing = "(null)";
 c = va_arg(ap, char *);
+if (c != NULL)
+{
 while (c && c[i] != '\0')
 {
 _putchar(c[i]);
 i++;
+}
+}
+else
+{
+for (i = 0; nothing[i] != '\0'; i++)
+_putchar(nothing[i]);
 }
 return (i);
 }
