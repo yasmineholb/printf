@@ -27,7 +27,7 @@ if (c != NULL)
 {
 while (c && c[i] != '\0')
 {
-_putcharc[i]);
+_putchar(c[i]);
 i++;
 }
 }
