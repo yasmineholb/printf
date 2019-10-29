@@ -8,6 +8,7 @@
 *@c: char
 *@fn: pointer
 */
+
 typedef struct spec
 {
 char c;
