@@ -10,7 +10,7 @@
 int print_c(va_list ap)
 {
 char c = va_arg(ap, int);
-putchar(c);
+_putchar(c);
 return (1);
 }
 /**
@@ -25,7 +25,7 @@ char *c;
 c = va_arg(ap, char *);
 while (c && c[i] != '\0')
 {
-putchar(c[i]);
+_putchar(c[i]);
 i++;
 }
 return (i);
@@ -38,7 +38,7 @@ return (i);
 int print_per(va_list ap)
 {
 (void)ap;
-putchar('%');
+_putchar('%');
 return (1);
 }
 /**
@@ -63,7 +63,7 @@ while (format && format[i] != '\0')
 {
 if (format[i] != '%')
 {
-putchar(format[i]);
+_putchar(format[i]);
 k++;
 }
 else if (format[i] == '%')
@@ -76,8 +76,8 @@ p = types[j].fn;
 }
 if (p == NULL)
 {
-putchar('%');
-putchar(format[i]);
+_putchar('%');
+_putchar(format[i]);
 k += 2;
 }
 else
