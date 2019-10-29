@@ -10,7 +10,7 @@
 int print_c(va_list ap)
 {
 char c = va_arg(ap, int);
-_putchar(c;
+_putchar(c);
 return (1);
 }
 /**
