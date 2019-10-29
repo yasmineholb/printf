@@ -10,7 +10,7 @@
 */
 typedef struct spec
 {
-char *c;
+char c;
 int (*fn)();
 } type1;
 int _printf(const char *format, ...);

@@ -9,7 +9,8 @@
  */
 int print_c(va_list ap)
 {
-putchar(va_arg(ap, int));
+char c = va_arg(ap, int);
+putchar(c);
 return (1);
 }
 /**
@@ -36,7 +37,7 @@ return (i);
  */
 int print_per(va_list ap)
 {
-va_arg(ap, int);
+(void)ap;
 putchar('%');
 return (1);
 }
@@ -50,9 +51,9 @@ int _printf(const char *format, ...)
 va_list ap;
 int i = 0, j = 0, k = 0;
 type1 types[] = {
-{"c", print_c},
-{"s", print_s},
-{"%", print_per}
+{'c', print_c},
+{'s', print_s},
+{'%', print_per}
 };
 int (*p)(va_list);
 va_start(ap, format);
@@ -70,7 +71,7 @@ else if (format[i] == '%')
 i++;
 for (j = 0; types[j].c; j++)
 {
-if (types[j].c[0] == format[i])
+if (types[j].c == format[i])
 p = types[j].fn;
 }
 if (p == NULL)
