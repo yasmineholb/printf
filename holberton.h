@@ -1,5 +1,8 @@
 #ifndef file
 #define file
+#include <stdio.h>
+#include <stdarg.h>
+#include <string.h>
 /**
 *struct spec - struct
 *@c: char
