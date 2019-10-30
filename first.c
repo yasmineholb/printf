@@ -30,6 +30,7 @@ while (c && c[i] != '\0')
 _putchar(c[i]);
 i++;
 }
+i--;
 }
 else
 {
