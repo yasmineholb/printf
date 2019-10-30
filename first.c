@@ -64,7 +64,8 @@ int _printf(const char *format, ...)
 		{'s', print_s},
 		{'%', print_per},
 		{'d', print_d},
-		{'i', print_i}
+		{'i', print_i},
+		{NULL, NULL}
 	};
 	va_start(ap, format);
 	if ((format[i] == '%' && format[i + 1] == '\0') || format == NULL)
