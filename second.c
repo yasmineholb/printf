@@ -83,25 +83,27 @@ return (k);
  */
 int print_R(va_list ap)
 {
-int x = 0, y = 0, i = -1, k = 0, p;
-char *n;
-char m[] = "ANBOCPDQERFSGTHUIVJWKXLYMZanbocpdqerfsgthuivjwkxlymz";
-n = va_arg(ap, char *);
-for (x = 0; n[x]; x++)
+char *ch = va_arg(ap, char *);
+int i, j, k = 0;
+char ab[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+char yz[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
+for (i = 0; ch[i] != '\0'; i++)
 {
-i = 1;
-for (y = 0; n[x] != m[y] && y < 52; y++)
+j = 0;
+while ((ab[j] != '\0') && (ch[i] != ab[j]))
 {
-i = (i * -1);
+j++;
 }
-if (n[x] == m[y])
+if (ch[i] == ab[j])
 {
-n[x] = (n[x] + (13 * i));
+_putchar(yz[j]);
+k++;
 }
-}
-for (p = 0; n[p]; p++)
+else if (ab[j] == '\0')
 {
-k += _putchar(n[p]);
+_putchar(ch[i]);
+k++;
+}
 }
 return (k);
 }
