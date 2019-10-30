@@ -105,4 +105,45 @@ k += _putchar(n[p]);
 }
 return (k);
 }
-
+/**
+ *print_p - fn
+ *@ap: param
+ *Return: int
+ */
+int print_p(va_list ap)
+{
+unsigned long ch[30], n = 0;
+unsigned int k = 0;
+int i = 0;
+n = va_arg(ap, unsigned long);
+if (n == 0)
+{
+_putchar('(');
+_putchar('n');
+_putchar('i');
+_putchar('l');
+_putchar(')');
+k += 5;
+}
+else if (n > 0)
+{
+_putchar('0');
+_putchar('x');
+k += 2;
+while (n > 0)
+{
+if (n % 16 >= 10 && n % 16 <= 15)
+ch[i] = 87 + (n % 16);
+else
+ch[i] = 48 + (n % 16);
+n = n / 16;
+i++;
+}
+for (--i; i >= 0; i--)
+{
+_putchar(ch[i]);
+k++;
+}
+}
+return (k);
+}
