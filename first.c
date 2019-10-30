@@ -57,7 +57,7 @@ return (1);
 int _printf(const char *format, ...)
 {
 va_list ap;
-int i = 0, j = 0, k = 0;
+int i = 0, j = 0, k = 0, (*p)(va_list);
 type1 types[] = {
 {'c', print_c},
 {'s', print_s},
@@ -65,7 +65,6 @@ type1 types[] = {
 {'d', print_d},
 {'i', print_i}
 };
-int (*p)(va_list);
 va_start(ap, format);
 if ((format[i] == '%' && format[i + 1] == '\0') || format == NULL)
 return (-1);
