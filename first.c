@@ -39,47 +39,69 @@ _putchar(nothing[i]);
 return (i);
 }
 /**
+* getspecifier - fn
+* @x: param
+* Return: int
+*/
+int(*getspecifier(char x))(va_list)
+{
+int i;
+type1 p[] = {
+{'c', print_c},
+{'s', print_s},
+{'i', print_i},
+{'d', print_i},
+{'\0', '\0'}
+};
+for (i = 0; p[i].c; i++)
+{
+if (p[i].c == x)
+{
+return (p[i].fn);
+}
+}
+return (0);
+}
+/**
  *_printf - fn
  * @format: const
  *Return: int
  */
 int _printf(const char *format, ...)
 {
+unsigned int k = 0, i = 0;
+int  (*fn)(va_list);
 va_list ap;
-int i = 0, j = 0, k = 0, (*p)(va_list);
-type1 types[] = {
-{'c', print_c},
-{'s', print_s},
-{'d', print_d},
-{'i', print_i}
-};
-va_start(ap, format);
-if (format == NULL || (format[i] == '%' && format[i + 1] == '\0'))
+if (format == NULL)
 return (-1);
-while (format && format[i] != '\0')
+va_start(ap, format);
+while (format && format[i])
 {
-if (format[i] == '%')
-{
-for (j = 0; types[j].c; j++)
-{
-if (types[j].c == format[i])
-p = types[j].fn;
-}
-if (types[j].c == '\0')
-{
-_putchar('%');
-if (format[i + 1] != '%')
-_putchar(format[i + 1]);
-k += 2;
-i += 2;
-}
-else
-k += p(ap);
-}
 if (format[i] != '%')
 {
 _putchar(format[i]);
 k++;
+}
+else if (format[i] == '%' && format[i + 1] == '\0')
+return (-1);
+else if (format[i] == '\0')
+return (k);
+else if (format[i] == '%')
+{
+fn = getspecifier(format[i + 1]);
+i += 1;
+if (fn == NULL)
+{
+if (format[i] != '%')
+{
+_putchar(format[i - 1]);
+k += 1;
+}
+_putchar(format[i]);
+k += 1;
+}
+else
+k = k + fn(ap);
 }
 i++;
 }

@@ -4,12 +4,12 @@
 #include <stdarg.h>
 #include <string.h>
 /**
-*struct spec - struct
+*struct type1 - struct
 *@c: char
 *@fn: pointer
 */
 
-typedef struct spec
+typedef struct type1
 {
 char c;
 int (*fn)();
