@@ -63,8 +63,7 @@ type1 types[] = {
 {'s', print_s},
 {'%', print_per},
 {'d', print_d},
-{'i', print_i},
-{NULL, NULL}
+{'i', print_i}
 };
 va_start(ap, format);
 if ((format[i] == '%' && format[i + 1] == '\0') || format == NULL)
