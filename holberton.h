@@ -21,4 +21,6 @@ int print_per(va_list ap);
 int _putchar(char c);
 int print_d(va_list d);
 int print_i(va_list i);
+int print_R(va_list ap);
+
 #endif

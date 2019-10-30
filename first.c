@@ -51,6 +51,7 @@ type1 p[] = {
 {'s', print_s},
 {'i', print_i},
 {'d', print_i},
+{'R', print_R},
 {'\0', '\0'}
 };
 for (i = 0; p[i].c; i++)

@@ -75,3 +75,34 @@ k++;
 }
 return (k);
 }
+
+/**
+ *print_R - fn
+ *@ap: param
+ *Return: int
+ */
+int print_R(va_list ap)
+{
+int x = 0, y = 0, i = -1, k = 0, p;
+char *n;
+char m[] = "ANBOCPDQERFSGTHUIVJWKXLYMZanbocpdqerfsgthuivjwkxlymz";
+n = va_arg(ap, char *);
+for (x = 0; n[x]; x++)
+{
+i = 1;
+for (y = 0; n[x] != m[y] && y < 52; y++)
+{
+i = (i * -1);
+}
+if (n[x] == m[y])
+{
+n[x] = (n[x] + (13 * i));
+}
+}
+for (p = 0; n[p]; p++)
+{
+k += _putchar(n[p]);
+}
+return (k);
+}
+
