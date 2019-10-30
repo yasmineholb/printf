@@ -39,17 +39,6 @@ _putchar(nothing[i]);
 return (i);
 }
 /**
- * print_per - fn
- *@ap: int
- *Return: int
- */
-int print_per(va_list ap)
-{
-(void)ap;
-_putchar('%');
-return (1);
-}
-/**
  *_printf - fn
  * @format: const
  *Return: int
@@ -61,36 +50,36 @@ int i = 0, j = 0, k = 0, (*p)(va_list);
 type1 types[] = {
 {'c', print_c},
 {'s', print_s},
-{'%', print_per},
 {'d', print_d},
 {'i', print_i}
 };
 va_start(ap, format);
-if ((format[i] == '%' && format[i + 1] == '\0') || format == NULL)
+if (format == NULL || (format[i] == '%' && format[i + 1] == '\0'))
 return (-1);
 while (format && format[i] != '\0')
 {
-if (format[i] != '%')
+if (format[i] == '%')
 {
-_putchar(format[i]);
-k++;
-}
-else if (format[i] == '%')
-{
-i++;
 for (j = 0; types[j].c; j++)
 {
 if (types[j].c == format[i])
 p = types[j].fn;
 }
-if (p == NULL)
+if (types[j].c == '\0')
 {
 _putchar('%');
-_putchar(format[i]);
+if (format[i + 1] != '%')
+_putchar(format[i + 1]);
 k += 2;
+i += 2;
 }
 else
 k += p(ap);
+}
+if (format[i] != '%')
+{
+_putchar(format[i]);
+k++;
 }
 i++;
 }
