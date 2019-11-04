@@ -30,7 +30,6 @@ int print_s(va_list ap)
 			_putchar(c[i]);
 			i++;
 		}
-		i--;
 	}
 	else
 	{
@@ -40,15 +39,30 @@ int print_s(va_list ap)
 	return (i);
 }
 /**
- * print_per - fn
- *@ap: int
- *Return: int
+ * getspecifier - fn
+ * @x: param
+ * Return: int
  */
-int print_per(va_list ap)
+int(*getspecifier(char x))(va_list)
 {
-	(void)ap;
-	_putchar('%');
-	return (1);
+	int i;
+	type1 p[] = {
+		{'c', print_c},
+		{'s', print_s},
+		{'i', print_i},
+		{'d', print_i},
+		{'R', print_R},
+		{'p', print_p},
+		{'\0', '\0'}
+	};
+	for (i = 0; p[i].c; i++)
+	{
+		if (p[i].c == x)
+		{
+			return (p[i].fn);
+		}
+	}
+	return (0);
 }
 /**
  *_printf - fn
@@ -57,88 +71,42 @@ int print_per(va_list ap)
  */
 int _printf(const char *format, ...)
 {
-<<<<<<< HEAD
+	unsigned int k = 0, i = 0;
+	int  (*fn)(va_list);
 	va_list ap;
-	int i = 0, j = 0, k = 0, (*p)(va_list);
-	type1 types[] = {
-		{'c', print_c},
-		{'s', print_s},
-		{'%', print_per},
-		{'d', print_d},
-		{'i', print_i},
-		{NULL, NULL}
-	};
-	va_start(ap, format);
-	if ((format[i] == '%' && format[i + 1] == '\0') || format == NULL)
+	if (format == NULL)
 		return (-1);
-	while (format && format[i] != '\0')
+	va_start(ap, format);
+	while (format && format[i])
 	{
 		if (format[i] != '%')
 		{
 			_putchar(format[i]);
 			k++;
 		}
+		else if (format[i] == '%' && format[i + 1] == '\0')
+			return (-1);
+		else if (format[i] == '\0')
+			return (k);
 		else if (format[i] == '%')
 		{
-			i++;
-			for (j = 0; types[j].c; j++)
+			fn = getspecifier(format[i + 1]);
+			i += 1;
+			if (fn == NULL)
 			{
-				if (types[j].c == format[i])
-					p = types[j].fn;
-			}
-			if (p == NULL)
-			{
-				_putchar('%');
+				if (format[i] != '%')
+				{
+					_putchar(format[i - 1]);
+					k += 1;
+				}
 				_putchar(format[i]);
-				k += 2;
+				k += 1;
 			}
 			else
-				k += p(ap);
+				k = k + fn(ap);
 		}
 		i++;
 	}
 	va_end(ap);
 	return (k);
-=======
-va_list ap;
-int i = 0, j = 0, k = 0, (*p)(va_list);
-type1 types[] = {
-{'c', print_c},
-{'s', print_s},
-{'%', print_per},
-{'d', print_d},
-{'i', print_i}
-};
-va_start(ap, format);
-if ((format[i] == '%' && format[i + 1] == '\0') || format == NULL)
-return (-1);
-while (format && format[i] != '\0')
-{
-if (format[i] != '%')
-{
-_putchar(format[i]);
-k++;
-}
-else if (format[i] == '%')
-{
-i++;
-for (j = 0; types[j].c; j++)
-{
-if (types[j].c == format[i])
-p = types[j].fn;
-}
-if (p == NULL)
-{
-_putchar('%');
-_putchar(format[i]);
-k += 2;
-}
-else
-k += p(ap);
-}
-i++;
-}
-va_end(ap);
-return (k);
->>>>>>> 74c95a092cc35139bfff3320a1f5cddd3a3473b6
 }
