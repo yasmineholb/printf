@@ -1,13 +1,11 @@
 .TH man 3 "29 October 2019" "0.34" "_printf "
 .SH NAME
 .B _printf
-- printing and formating data according the given conversion specifiers
+- printing characters
 .SH SYNOPSIS
-#include holberton.h
-.br
-int _printf(const char *foramt, ...);
+function for printing
 .SH DESCRIPTION
-This function prints to std output according to the given formats and returns the number of the printed charcters
+This function converts the characters an prints th format
 .B_printf()
 prints the output while respecting spectial characters
 .SH CONVERSION ARGUMENTS
@@ -25,9 +23,7 @@ A `%'  is  written.if we add another % it prints
 .B d,i
 The  int   the argument contains an integer
 .SH RETURN VALUE
-it prints the number of characters printed
-.SH EXAMPLE
-To print a char: _printf("%c", 'A');
+it prints the number of characters printes
 .SH SEE ALSO
 printf(3)
 .SH BUGS
